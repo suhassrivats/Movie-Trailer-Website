@@ -130,7 +130,29 @@ movie_tile_content = '''
 
 
 def create_movie_tiles_content(movies):
-    # The HTML content for this section of the page
+    """
+        - Fetches the list 'movies' from 'open_movies_page(movies)' function
+        - Properties of each movie is appended into 'movie_tile_content'
+        - Returns 'content' of type 'string'
+
+        Example: content =
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="wZBfmBvvotE" data-toggle="modal" data-target="#trailer">
+            <img src="http://ia.media-imdb.com/images/M/MV5BMjE0ODk2NjczOV5BMl5BanBnXkFtZTYwNDQ0NDg4._V1_SY317_CR4,0,214,317_AL_.jpg" width="220" height="342">
+            <h2>Pulp Fiction</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="m8e-FF8MsqU" data-toggle="modal" data-target="#trailer">
+            <img src="http://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg" width="220" height="342">
+            <h2>Matrix</h2>
+        </div>
+
+        <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="_wNYNDzKpuQ" data-toggle="modal" data-target="#trailer">
+            <img src="http://ia.media-imdb.com/images/M/MV5BMTMxMTM3MDIwM15BMl5BanBnXkFtZTcwMDYyOTUyMg@@._V1_SX214_AL_.jpg" width="220" height="342">
+            <h2>True Romance</h2>
+        </div>
+    """
+
     content = ''
     for movie in movies:
         # Extract the youtube ID from the url
@@ -141,7 +163,8 @@ def create_movie_tiles_content(movies):
         trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                               else None)
 
-        # Append the tile for the movie with its content filled in
+        # Properties of each movie in 'movies' list is appended into
+        # 'movie_tile_content'
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
@@ -151,17 +174,28 @@ def create_movie_tiles_content(movies):
 
 
 def open_movies_page(movies):
-    # Create or overwrite the output file
+    '''
+        - Fetches the list 'movies' from 'entertainment_center.py' module
+        - Open 'fresh_tomatoes.html' page
+        - Write 'main_page_head' and 'rendered_content' in it
+        - Save and close the file
+        - Open 'fresh_tomatoes.html' in your default browser
+    '''
     output_file = open('fresh_tomatoes.html', 'w')
 
-    # Replace the movie tiles placeholder generated content
+    '''
+    - Replace the 'movie_tiles' placeholder with the generated 'content'
+        (type: string of HTML) returned from `create_movie_tiles_content(movies)`
+    - Append the new 'movie_tiles' ('movie_tiles' = 'content') to
+     'main_page_content' and store it in 'rendered_content'
+    '''
     rendered_content = main_page_content.format(
         movie_tiles=create_movie_tiles_content(movies))
 
-    # Output the file
+    # Update 'output_file' with new content, save, and close it.
     output_file.write(main_page_head + rendered_content)
     output_file.close()
 
-    # open the output file in the browser (in a new tab, if possible)
+    # Open 'output_file' in the browser (in a new tab, if possible)
     url = os.path.abspath(output_file.name)
     webbrowser.open('file://' + url, new=2)
