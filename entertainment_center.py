@@ -49,5 +49,5 @@ movies = [pulp_fiction, matrix,
           ]
 
 # Send the movies list to 'open_movies_page' method in 'fresh_tomatoes.py'
-# method
+# module
 fresh_tomatoes.open_movies_page(movies)
