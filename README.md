@@ -2,7 +2,7 @@
 
 A Movie Trailer Website where users can see my favorite movies and watch the trailers.
 
-# How to run this code in your PC?
+# How to run this code on your PC?
 
 - Open the terminal
 - Clone this code by typing `git clone https://github.com/suhassrivats/Movie-Trailer-Website.git` in terminal
