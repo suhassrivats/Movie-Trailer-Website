@@ -174,21 +174,21 @@ def create_movie_tiles_content(movies):
 
 
 def open_movies_page(movies):
-    '''
+    """
         - Fetches the list 'movies' from 'entertainment_center.py' module
         - Open 'fresh_tomatoes.html' page
         - Write 'main_page_head' and 'rendered_content' in it
         - Save and close the file
         - Open 'fresh_tomatoes.html' in your default browser
-    '''
+    """
     output_file = open('fresh_tomatoes.html', 'w')
 
-    '''
+    """
     - Replace the 'movie_tiles' placeholder with the generated 'content'
         (type: string of HTML) returned from `create_movie_tiles_content(movies)`
     - Append the new 'movie_tiles' ('movie_tiles' = 'content') to
      'main_page_content' and store it in 'rendered_content'
-    '''
+    """
     rendered_content = main_page_content.format(
         movie_tiles=create_movie_tiles_content(movies))
 
